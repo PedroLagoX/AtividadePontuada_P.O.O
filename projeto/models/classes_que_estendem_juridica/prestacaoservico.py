@@ -2,8 +2,8 @@ from projeto.models.classes.endereco import Endereco
 from projeto.models.classes_que_estendem_pessoa.juridica import Juridica
 
 class Prestacaoservico(Juridica):
-    def __init__(self, nome: str, telefone: str, email: str, endereco: Endereco, cnpj: str, inscricaoEstadual: str, contratoinicio:str, contratofinal:str) -> None:
-        super().__init__(nome, telefone, email, endereco, cnpj, inscricaoEstadual)
+    def __init__(self, id:str,nome: str, telefone: str, email: str, endereco: Endereco, cnpj: str, inscricaoEstadual: str, contratoinicio:str, contratofinal:str) -> None:
+        super().__init__(id,nome, telefone, email, endereco, cnpj, inscricaoEstadual)
 
         self.contratoinicio = self.__verificar_contratoinicio(contratoinicio)
         self.contratofinal = self.__verificar_contratofinal(contratofinal)

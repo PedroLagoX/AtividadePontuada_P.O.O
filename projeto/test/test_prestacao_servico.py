@@ -11,7 +11,7 @@ def endereco_valido():
 
 @pytest.fixture
 def prestacao_servico_valido(endereco_valido):
-    prestacaoservico = Prestacaoservico("12039013","Julia","98188221","juliavales@email",endereco_valido,"123456","14/03/2005","24/09/2024")
+    prestacaoservico = Prestacaoservico("12039013","Julia","98188221","juliavales@email",endereco_valido,"1298765","123456","14/032005","24/09/2024")
     return prestacaoservico
 
 def test_validando_atributos_nome(prestacao_servico_valido):
@@ -19,6 +19,9 @@ def test_validando_atributos_nome(prestacao_servico_valido):
 
 def test_validando_atributos_nome(prestacao_servico_valido):
     assert prestacao_servico_valido.id== "12039013"    
+
+def test_validando_atributos_nome(prestacao_servico_valido):
+    assert prestacao_servico_valido.cnpj== "1298765"    
 
 def test_validando_atributos_nome(prestacao_servico_valido):
     assert prestacao_servico_valido.telefone == "98188221"
