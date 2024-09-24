@@ -20,6 +20,16 @@ class Pessoa:
             except(ValueError,TypeError) as erro:
                 print(erro)
 
+    def __verificar_endereco(self, endereco):
+            try:
+                if not endereco:
+                    raise ValueError("Endereço não pode estar vazio")
+                if not isinstance(endereco, str):
+                   return endereco
+    
+            except(ValueError,TypeError) as erro:
+                print(erro)
+
 
     def __verificar_nome(self, nome):
         try:
@@ -38,6 +48,7 @@ class Pessoa:
             if not isinstance(telefone, str):
                 raise TypeError("Telefone só pode ser uma string")
             return telefone
+        
         except(ValueError,TypeError) as erro:
             print(erro)
 
@@ -60,8 +71,7 @@ class Pessoa:
             f"\nNome: {self.nome}"
             f"\nTelefone: {self.telefone}"
             f"\nEmail: {self.email}"
-            f"\nEndereço: {self.endereco}"  # Aqui assume que Endereco já tem __str__ implementado
-        )
+            f"\nEndereço: {self.endereco}" )
 
 
 
