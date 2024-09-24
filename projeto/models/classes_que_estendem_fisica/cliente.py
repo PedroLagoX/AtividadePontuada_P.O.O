@@ -1,7 +1,7 @@
 
-from projeto.models.endereco import Endereco
+from projeto.models.classes.endereco import Endereco
 from projeto.models.enums.genero import Genero
-from projeto.models.fisica import Fisica
+from projeto.models.classes_que_estendem_pessoa.fisica import Fisica
 from projeto.models.enums.estadocivil import EstadoCivil
 
 class Cliente(Fisica):
