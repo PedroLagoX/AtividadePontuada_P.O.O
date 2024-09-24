@@ -8,13 +8,16 @@ from projeto.models.enums.setor import Setor
 
 @pytest.fixture
 def endereco_valido():
-    endereco = Endereco("Rua C", "32", "600", "20223121", "Salvador", Unidadefederativa.BAHIA)
-    return endereco
+    return Endereco("Rua C", "32", "600", "20223121", "Salvador", Unidadefederativa.BAHIA)
 
 @pytest.fixture
 def funcionario_valido(endereco_valido):
-    funcionario = Funcionario("19282893", "Julio Cesar", "982873750", "juliocesar@", endereco_valido, "14/2005", Genero.MASCULINO, EstadoCivil.SOLTEIRO, "92923819", "88283813", "1828218321", Setor.ENGENHARIA, 50000)
-    return funcionario
+    return Funcionario(
+        "19282893", "Julio Cesar", "982873750", "juliocesar@", 
+        endereco_valido, "14/2005", Genero.MASCULINO, 
+        EstadoCivil.SOLTEIRO, "92923819", "88283813", 
+        "1828218321", Setor.ENGENHARIA, 50000
+    )
 
 def test_validando_atributos_pessoa(funcionario_valido):
     assert funcionario_valido.nome == "Julio Cesar"
@@ -46,12 +49,15 @@ def test_validando_atributos_genero(funcionario_valido):
 def test_validando_atributos_estadocivil(funcionario_valido):
     assert funcionario_valido.estadocivil == EstadoCivil.SOLTEIRO
 
+def test_validando_atributos_salario_negativo(endereco_valido):
+    with pytest.raises(ValueError, match="Salário não pode ser negativo."):
+        Funcionario("19282893", "Julio Cesar", "982873750", "juliocesar@", 
+                    endereco_valido, "14/2005", Genero.MASCULINO, 
+                    EstadoCivil.SOLTEIRO, "92923819", "88283813", 
+                    "1828218321", Setor.ENGENHARIA, -50000)  # Salário negativo
+
 def test_validando_atributos_salario(funcionario_valido):
     assert funcionario_valido.salario == 50000
-
-def test_validando_atributos_salario_negativo(endereco_valido):
-    with pytest.raises(ValueError, match="Salário não pode ser negativo"):
-        Funcionario("19282893", "Julio Cesar", "982873750", "juliocesar@", endereco_valido, "14/2005", Genero.MASCULINO, EstadoCivil.SOLTEIRO, "92923819", "88283813", "1828218321", Setor.ENGENHARIA, -1)
 
 def test_validando_atributos_setor(funcionario_valido):
     assert funcionario_valido.setor == Setor.ENGENHARIA
